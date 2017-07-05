@@ -1,0 +1,417 @@
+$icon-font-path: '../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+$fa-font-path: '../bower_components/font-awesome/fonts';
+
+@import 'font-awesome/scss/font-awesome';
+
+@import 'compass/css3/images';
+@import 'compass/utilities/general/hacks';
+@import 'compass/css3/shared';
+
+$color-white: #fff;
+$select2-choices-color: #888;
+$select2-container-multi-background-color: #eee;
+$select2-container-multi-border: #666;
+$select2-container-multi-color: #444;
+$color-steel: #f5f5f5;
+$total-records-background-color: #f8f8f8;
+$total-records-border: #ddd;
+$total-records-color: #777;
+$red: #f00;
+$table-th-color: #555;
+$table-th-filter-background-color: #f0eeff;
+$black: #000;
+$tags-input-border: #ccc;
+$navbar-border-bottom: #d1d4d7;
+$autocomplete-background-color: #ff0;
+$navbar-brand-focus-color: #22baa0;
+$navbar-brand-border-right-color: #e3e9ed;
+$details-color: #a94442;
+$autocomplete-selected-background-color: #e9e9e9;
+$autocomplete-selected-color: #262626;
+$header-row-border-bottom-color: #d8d8d8;
+$tags-input-focused-border-color: #66afe9;
+$tags-input-tags-item-background: #428bca;
+$tags-input-tags-item-border: #357ebd;
+$tags-input-tags-item-selected: #d9534f;
+$tags-input-tags-item-selected-color: #d43f3a;
+$page-header-affix-border-bottom-color: #d6d6d6;
+$parameter-value-text-warning-color: #8a6d3b;
+$shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px lighten($state-danger-text, 20%);
+
+// include removed bootstrap contextual badge classes
+.badge-default {
+  @include label-variant($label-default-bg);
+}
+
+.badge-primary {
+  @include label-variant($label-primary-bg);
+}
+
+.badge-success {
+  @include label-variant($label-success-bg);
+}
+
+.badge-info {
+  @include label-variant($label-info-bg);
+}
+
+.badge-warning {
+  @include label-variant($label-warning-bg);
+}
+
+.badge-danger {
+  @include label-variant($label-danger-bg);
+}
+
+.underline {
+  border-bottom: 1px dotted $abbr-border-color;
+}
+
+$border: 2px solid $total-records-border;
+
+@mixin set-border($border) {
+  border-right: $border;
+  border-left: $border;
+}
+
+@mixin set-background-color($color) {
+  background-color: $color;
+}
+
+// xtform validation style
+.xt-error {
+  @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, .075)); // Redeclare so transitions work
+  border-color: $state-danger-text;
+
+  &:focus {
+    @include box-shadow($shadow);
+    border-color: darken($state-danger-text, 10%);
+  }
+}
+
+// ng-loading bar style
+// scss-lint:disable IdSelector
+#loading-bar .bar {
+  height: 3px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.leftpad {
+  padding-left: 10px;
+}
+
+.rightpad {
+  padding-right: 10px;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.toppad {
+  padding-top: 10px;
+}
+
+.bottompad {
+  padding-bottom: 10px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.wide {
+  margin: 0 -15px;
+}
+
+.divider{
+    position:absolute;
+    left:50%;
+    top:10%;
+    bottom:10%;
+    border-left:1px solid white;
+}
+
+.disabled {
+  background-color: $pagination-disabled-bg;
+  border-color: $pagination-disabled-border;
+  color: $pagination-disabled-color;
+  cursor: not-allowed;
+
+  > * {
+    background-color: $pagination-disabled-bg;
+    border-color: $pagination-disabled-border;
+    color: $pagination-disabled-color;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+#title.affix {
+  // have to hard-code width as fixed style needs width
+  width: 12800px;
+  z-index: 1000;
+}
+
+.strike,
+.strike span,
+.strike label {
+  text-decoration: line-through;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  // Margin bottom by footer height
+  margin-bottom: 60px;
+  // padding top for fixed header
+  padding-top: 50px;
+  background-color: $color-steel;
+}
+
+#footer {
+  border-top: solid;
+  border-top-color: #d3d3d3;
+  background-color: $color-white;
+  bottom: 0;
+  // Set the fixed height of the footer here
+  //height: 60px;
+  position: absolute;
+  width: 100%;
+}
+
+.select2-container-multi .select2-choices .or {
+  background-color: $color-white;
+  border: 1px solid $select2-choices-color;
+  color: $select2-choices-color;
+  cursor: not-allowed;
+}
+
+.select2-container-multi .select2-choices .constant {
+  background-color: $select2-container-multi-background-color;
+  border: 1px solid $select2-container-multi-border;
+  color: $select2-container-multi-color;
+  cursor: ew-resize;
+}
+
+.select2-container-multi .select2-choices .locked {
+  background-color: $label-primary-bg;
+  border: 1px solid $label-primary-bg;
+  color: $label-color;
+  cursor: ew-resize;
+}
+
+.select2-container-multi .select2-choices .parameter {
+  background-color: $label-success-bg;
+  border: 1px solid $label-success-bg;
+  color: $label-color;
+  cursor: ew-resize;
+}
+
+.select2-container-multi .select2-choices .wildcard {
+  background-color: $label-warning-bg;
+  border: 1px solid $label-warning-bg;
+  color: $label-color;
+  cursor: ew-resize;
+}
+
+.right-inner-addon input {
+  margin-bottom: 5px;
+  padding-right: 30px;
+  position: relative;
+}
+
+.right-inner-addon i {
+  margin-right: 5px;
+  padding: 10px 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.description {
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.ok-btn {
+  float: right;
+}
+
+.cancel-btn,
+.delete-btn {
+  float: right;
+  margin-right: 5px;
+}
+
+.readonly-input {
+  // scss-lint:disable ImportantRule
+  cursor: pointer !important; // No lint reported
+  margin-bottom: 5px;
+}
+
+.btn-container {
+  margin-top: 5px;
+  }
+
+.total-records {
+  background-color: $total-records-background-color;
+  border: 1px solid $total-records-border;
+  border-bottom: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: $total-records-color;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1.42;
+  margin-left: -1px;
+  margin-right: 10px;
+  padding: 3px 15px;
+  position: relative;
+  white-space: nowrap;
+
+  div {
+    line-height: 35px;
+  }
+}
+
+.table-caption {
+  border-bottom: 2px solid $total-records-border;
+}
+
+.navbar {
+  background-color: $color-white;
+  border-bottom: 1px solid $navbar-border-bottom;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.navbar-brand {
+  border-right: 1px solid $navbar-brand-border-right-color;
+  margin-left: auto;
+  margin-right: auto;
+
+  img {
+    max-height: 50px;
+  }
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: $navbar-brand-focus-color;
+}
+
+// Category details
+.details.category-details {
+  font-size: 11px;
+
+  th {
+    font-size: 13px;
+  }
+
+  .btn.btn-xs {
+    height: 1.5em;
+    line-height: 1em;
+    padding: 3px;
+  }
+
+  parameter-name {
+    color: $table-th-color;
+
+    .text-danger {
+      color: $details-color;
+    }
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .parameter-value.text-warning {
+    color: $parameter-value-text-warning-color;
+  }
+
+  .header-row {
+    border-bottom: 1px dotted $header-row-border-bottom-color;
+    min-height: 28px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    vertical-align: middle;
+  }
+
+  .header-row:last-child {
+    border-bottom: 0;
+    min-height: 23px;
+    padding-bottom: 0;
+  }
+
+  .header-row:first-child {
+    min-height: 23px;
+    padding-top: 0;
+  }
+}
+
+.details.category-details .parameter-value,
+.details.category-details .attribute-name {
+  font-weight: bold;
+}
+
+.inner-table {
+  border: 1px dashed $tags-input-border;
+}
+
+.page-header {
+  background-color: $color-white;
+  margin: 0;
+  padding: 0;
+  // these two properties are for animating the page header after affix is applied
+  position: static;
+  top: -32px;
+  width: 100%;
+
+  .affix {
+    @include transition(top .6s ease-in-out);
+    background-color: $state-info-bg;
+    border-bottom: 1px dashed $page-header-affix-border-bottom-color;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .1);
+    color: $state-info-text;
+    margin-left: -15px;
+    padding-left: 15px;
+    position: fixed;
+    // where the affixed control shud be placed
+    top: 40px;
+    z-index: 10;
+  }
+}
+
+.equal-height {
+  float: none;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.vertical-align-image {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+  border-bottom-style: solid;
+  border-width: 5px;
+  border-bottom-color: black;
+}

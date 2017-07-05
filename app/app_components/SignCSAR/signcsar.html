@@ -1,0 +1,239 @@
+<div class="container-fluid">
+    <br/><br/><br/><br/><br/>
+    <form role="form" name="signCSARForm" class="col-md-12 ng-pristine ng-invalid ng-invalid-required">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="background-color: white; border: solid; border-color: #d3d3d3;">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <h1 class="page-header" style="padding-bottom: 9px; padding-top: 9px;">Sign CSAR</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Select CSAR</label>
+                        <input class="form-control" type="file" files-input ng-model="model.csarfile" multiple/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label> &nbsp;</label>
+                        <input type="text" class="form-control" placeholder="Signature file name (optional)"
+                               ng-model="model.sigfile"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Digest Algorithm</label>
+                        <select class="form-control" ng-model="model.digestalg">
+                            <option value="MD2">MD2</option>
+                            <option value="MD5">MD5</option>
+                            <option value="SHA-1">SHA-1</option>
+                            <option value="SHA-256">SHA-256</option>
+                            <option value="SHA-384">SHA-384</option>
+                            <option value="SHA-512">SHA-512</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Signature Algorithm</label>
+                        <select class="form-control" ng-model="model.sigalg">
+                            <option value="MD2withRSA">MD2withRSA</option>
+                            <option value="MD5withRSA">MD5withRSA</option>
+                            <option value="SHA1withRSA">SHA1withRSA</option>
+                            <option value="SHA256withRSA">SHA256withRSA</option>
+                            <option value="SHA384withRSA">SHA384withRSA</option>
+                            <option value="SHA512withRSA">SHA512withRSA</option>
+                            <option value="SHA1withDSA">SHA1withDSA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Create Keystore with new keypair</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.keystoreName" placeholder="Keystore name"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.keystorePassword"
+                                   placeholder="Keystore password" ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.aliasName" placeholder="Alias name"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.aliasPassword" placeholder="Alias password"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2" align="center">
+                        <b>OR</b>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Provide keystore with existing symmetric key</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="file" files-input ng-model="model.existingKeystorefile" multiple ng-click="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystorePassword"
+                                   placeholder="Keystore password" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystoreAliasName"
+                                   placeholder="Alias name" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystoreAliasPassword"
+                                   placeholder="Alias password" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Please provide the following information if you are creating a new keystore</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>key Algorithm</label>
+                            <select class="form-control" ng-model="model.keyalg" ng-change="setDefaultKeysize()">
+                                <option value="DSA">DSA</option>
+                                <option value="RSA">RSA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-show="model.keyalg == 'DSA'">
+                            <label>key Size</label>
+                            <select class="form-control" ng-model="model.keysize">
+                                <option value="512">512</option>
+                                <option value="576">576</option>
+                                <option value="640">640</option>
+                                <option value="704">704</option>
+                                <option value="768">768</option>
+                                <option value="832">832</option>
+                                <option value="896">896</option>
+                                <option value="960">960</option>
+                                <option value="1024">1024</option>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-show="model.keyalg == 'RSA'">
+                            <label>&nbsp;</label>
+                            <input class="form-control" ng-model="model.keysize"
+                                   placeholder="Keysize (must be greater than 512 and multiple of 8)"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Certificate information</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.firstAndLastName"
+                                   placeholder="First and Last name"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.organizationalUnit"
+                                   placeholder="Name of Organizational Unit"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.organization"
+                                   placeholder="Name of Organization"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.city" placeholder="Name of City or Locality"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.state" placeholder="Name of State or Province"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.countryCode"
+                                   placeholder="Two-letter Country Code for this unit"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Signature Algorithm (for certificate signing)</label>
+                            <select class="form-control" ng-model="model.certsigalg">
+                                <option value="MD2withRSA">MD2withRSA</option>
+                                <option value="MD5withRSA">MD5withRSA</option>
+                                <option value="SHA1withRSA">SHA1withRSA</option>
+                                <option value="SHA256withRSA">SHA256withRSA</option>
+                                <option value="SHA384withRSA">SHA384withRSA</option>
+                                <option value="SHA512withRSA">SHA512withRSA</option>
+                                <option value="SHA1withDSA">SHA1withDSA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <input class="form-control" type="number" ng-model="model.validity"
+                                   placeholder="Certificate validity (in days) - default value is 90 days"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" align="right">
+                        <button ng-click="signCSAR()" class="btn btn-primary" style="width: 120px;">Sign</button>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <br/><br/><br/><br/><br/>
+    </form>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 ng-if="msg.statusCode=='SUCCESS'" class="modal-title">CSAR has been encrypted successfully.</h4>
+                    <h4 ng-if="msg.statusCode=='ERROR'" class="modal-title">CSAR could not be encrypted.</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-repeat="response in msg.responseMsgs"
+                         ng-class="response.messageType == 'SUCCESS' ? 'alert alert-success' :
+                         (response.messageType == 'ERROR' ? 'alert alert-danger' :
+                         (response.messageType == 'WARNING' ? 'alert alert-warning' : 'alert alert-info'))">
+                        {{response.messageValue}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" ng-if="msg.statusCode=='SUCCESS'" href="{{msg.downloadLink}}"
+                       onclick="$('#myModal').modal('hide')">Download Signed CSAR</a>
+                    <a class="btn btn-primary" ng-if="msg.statusCode=='ERROR'" data-dismiss="modal">Close</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

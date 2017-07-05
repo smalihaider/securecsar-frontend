@@ -1,0 +1,89 @@
+<div class="container-fluid">
+	<br/><br/><br/><br/><br/>
+	<form role="form" name="decryptCSARForm" class="col-md-12 ng-pristine ng-invalid ng-invalid-required">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" style="background-color: white; border: solid; border-color: #d3d3d3;">
+				<div class="row">
+					<div class="form-group col-md-12">
+						<h1 class="page-header" style="padding-bottom: 9px; padding-top: 9px;">Decrypt CSAR</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>Select CSAR</label>
+						<input class="form-control" type="file" files-input ng-model="model.csarfile" multiple/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label>Select keystore</label>
+						<div class="form-group">
+							<input class="form-control" type="file" files-input ng-model="model.existingKeystorefile" multiple/>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label>&nbsp;</label>
+						<div class="form-group">
+							<input class="form-control" ng-model="model.existingKeystorePassword"
+								   placeholder="Keystore password"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<div class="form-group">
+							<input class="form-control" ng-model="model.existingKeystoreAliasName"
+								   placeholder="Alias name"/>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<div class="form-group">
+							<input class="form-control" ng-model="model.existingKeystoreAliasPassword"
+								   placeholder="Alias password"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12" align="right">
+						<button ng-click="decryptCSAR()" class="btn btn-primary" style="width: 120px;">Decrypt</button>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<br/><br/><br/><br/><br/>
+	</form>
+
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 ng-if="msg.statusCode=='SUCCESS'" class="modal-title">CSAR has been decrypted successfully.</h4>
+					<h4 ng-if="msg.statusCode=='WARNING'" class="modal-title">CSAR could not be decrypted completely.</h4>
+					<h4 ng-if="msg.statusCode=='ERROR'" class="modal-title">CSAR could not be decrypted.</h4>
+				</div>
+				<div class="modal-body">
+					<div ng-repeat="response in msg.responseMsgs"
+						 ng-class="response.messageType == 'SUCCESS' ? 'alert alert-success' :
+                         (response.messageType == 'ERROR' ? 'alert alert-danger' :
+                         (response.messageType == 'WARNING' ? 'alert alert-warning' : 'alert alert-info'))">
+						{{response.messageValue}}
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" ng-if="msg.statusCode=='SUCCESS' || msg.statusCode=='WARNING'" href="{{msg.downloadLink}}"
+					   onclick="$('#myModal').modal('hide')">Download Decrypted CSAR</a>
+					<a class="btn btn-primary" ng-if="msg.statusCode=='ERROR'" data-dismiss="modal">Close</a>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

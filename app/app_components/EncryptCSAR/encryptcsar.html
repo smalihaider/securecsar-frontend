@@ -1,0 +1,163 @@
+<div class="container-fluid">
+    <br/><br/><br/><br/><br/>
+    <form role="form" name="encryptCSARForm" class="col-md-12 ng-pristine ng-invalid ng-invalid-required">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="background-color: white; border: solid; border-color: #d3d3d3;">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <h1 class="page-header" style="padding-bottom: 9px; padding-top: 9px;">Encrypt CSAR</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Select CSAR</label>
+                        <input class="form-control" type="file" files-input ng-model="model.csarfile" multiple/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name">Encryption Algorithm</label>
+                        <select class="form-control" ng-model="model.encAlg">
+                            <option value="AES">AES</option>
+                            <option value="DES">DES</option>
+                            <option value="DESede">DESede</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Encrypted by (optional)"
+                               ng-model="model.encryptedBy"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Encryptor contact information (optional)"
+                               ng-model="model.encryptorContact"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Create Keystore with new symmetric key</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.keystoreName" placeholder="Keystore name"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.keystorePassword"
+                                   placeholder="Keystore password" ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.aliasName" placeholder="Alias name"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.aliasPassword" placeholder="Alias password"
+                                   ng-change="resetExistingKeystoreFeilds()"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2" align="center">
+                        <b>OR</b>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Provide keystore with existing symmetric key</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="file" files-input ng-model="model.existingKeystorefile" multiple ng-click="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystorePassword"
+                                   placeholder="Keystore password" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystoreAliasName"
+                                   placeholder="Alias name" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" ng-model="model.existingKeystoreAliasPassword"
+                                   placeholder="Alias password" ng-change="resetNewKeystoreFeilds()"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Please provide the following information if you are creating a new keystore</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>key Algorithm</label>
+                            <select class="form-control" ng-model="model.keyalg" ng-change="setDefaultKeysize()">
+                                <option value="AES">AES</option>
+                                <option value="DES">DES</option>
+                                <option value="DESede">DESede</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-show="model.keyalg == 'AES'">
+                            <label>key Size</label>
+                            <select class="form-control" ng-model="model.keysize">
+                                <option value="128">128</option>
+                                <option value="192">192</option>
+                                <option value="256">256</option>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-show="model.keyalg == 'DES'">
+                            <label>key Size</label>
+                            <select class="form-control" ng-model="model.keysize">
+                                <option value="56">56</option>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-show="model.keyalg == 'DESede'">
+                            <label>key Size</label>
+                            <select class="form-control" ng-model="model.keysize">
+                                <option value="112">112</option>
+                                <option value="168">168</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" align="right">
+                        <button ng-click="encryptCSAR()" class="btn btn-primary" style="width: 120px;">Encrypt</button>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <br/><br/><br/><br/><br/>
+    </form>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 ng-if="msg.statusCode=='SUCCESS'" class="modal-title">CSAR has been encrypted successfully.</h4>
+                    <h4 ng-if="msg.statusCode=='ERROR'" class="modal-title">CSAR could not be encrypted.</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-repeat="response in msg.responseMsgs"
+                         ng-class="response.messageType == 'SUCCESS' ? 'alert alert-success' :
+                         (response.messageType == 'ERROR' ? 'alert alert-danger' :
+                         (response.messageType == 'WARNING' ? 'alert alert-warning' : 'alert alert-info'))">
+                        {{response.messageValue}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" ng-if="msg.statusCode=='SUCCESS'" href="{{msg.downloadLink}}"
+                       onclick="$('#myModal').modal('hide')">Download Encrypted CSAR</a>
+                    <a class="btn btn-primary" ng-if="msg.statusCode=='ERROR'" data-dismiss="modal">Close</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
