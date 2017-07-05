@@ -32,3 +32,5 @@ You can easily setup the securecsar-frontend project to have GUI for securecsar 
    1. <securecscar-frontend>/app/app_components/SignCSAR/signcsarController.js
 
 By default it is set at http://localhost:8080. So no need for this step, if securecsar-frontend and securecsar services are running on the same machine and server of securecsar services is configured at port 8080.
+
+More information of this prototype is included in scripture of the master's thesis "Securing Cloud Service Archives for Function and Data Shipping in Industrial Environments".
