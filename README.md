@@ -1,4 +1,4 @@
-# securecsar (frontend)
+# securecsar
 
 securecsar is a prototype built to secure TOSCA Cloud Service Archives (CSARs). The prototype is part of research work of master's thesis "Securing Cloud Service Archives for Function and Data Shipping in Industrial Environments" done at University of Stuttgart, Germany (IAAS Department). The prototype allows to provide security to TOSCA CSAR by defining policies in CSAR. The prototpye provides security to CSAR by implementing following use-cases.
 
@@ -11,7 +11,7 @@ The implementation of prototype consists of two projects:
 1. securecsar-frontend (https://github.com/smalihaider/securecsar-frontend.git) (contains Web based GUI to call REST services)- CURRENT REPOSITORY
 1. securecsar (https://github.com/smalihaider/securecsar.git) (contains services)
 
-# securecsar-frontend
+# securecsar (front-end application)
 This project is a web-based (containing html and javascripts files) graphical user interface application which runs on grunt server. The project calls encrypt, sign, verify, and decrypt REST endpoints in securecsar project (https://github.com/smalihaider/securecsar.git).
 
 You can easily setup the securecsar-frontend project to have GUI for securecsar REST webervices with the following steps:
