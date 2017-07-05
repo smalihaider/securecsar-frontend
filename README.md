@@ -1,19 +1,18 @@
 # securecsar (frontend)
 
-securecsar is a prototype built to secure TOSCA Cloud Service Archive (CSAR). The prototype is part of research work of master's thesis "Securing Cloud Service Archives for Function and Data Shipping in Industrial Environments" and it allows to provide security to CSAR by defining policy for CSAR. The prototpye secure CSAR by encrypting and signing it. The prototype provides the following functionalties:
+securecsar is a prototype built to secure TOSCA Cloud Service Archives (CSARs). The prototype is part of research work of master's thesis "Securing Cloud Service Archives for Function and Data Shipping in Industrial Environments" and it allows to provide security to TOSCA CSAR by defining policies in CSAR. The prototpye provides security to CSAR by implementing following use-cases.
 
-1. encrypt CSAR (default case) or individual artifacts in a CSAR
-1. sign CSAR (default case) or
-dfindividual artifacts in a CSAR
-1. verify CSAR (default case) or individual artifacts in a CSAR
-1. decrypt CSAR (default case) or individual artifacts in a CSAR
+1. encrypt all CSAR artifacts (default case) or individual artifacts in a CSAR
+1. sign all CSAR artifacts (default case) or individual artifacts in a CSAR
+1. verify all CSAR artifacts (default case) or individual artifacts in a CSAR
+1. decrypt all CSAR artifacts (default case) or individual artifacts in a CSAR
 
 The implementation of prototype consists of two projects:
-1. securecsar-frontend (https://github.com/smalihaider/securecsar-frontend.git) - CURRENT REPOSITORY
-1. securecsar (https://github.com/smalihaider/securecsar.git)
+1. securecsar-frontend (https://github.com/smalihaider/securecsar-frontend.git) (contains Web based GUI to call REST services)- CURRENT REPOSITORY
+1. securecsar (https://github.com/smalihaider/securecsar.git) (contains services)
 
 # securecsar-frontend
-This is front-end to the services in securecsar project. This project is basically a web-based (containing html and javascripts files) graphical user interface which runs on grunt server. The project calls encrypt, sign, verify, and decrypt REST endpoints in securecsar project (https://github.com/smalihaider/securecsar.git).
+This project is a web-based (containing html and javascripts files) graphical user interface application which runs on grunt server. The project calls encrypt, sign, verify, and decrypt REST endpoints in securecsar project (https://github.com/smalihaider/securecsar.git).
 
 You can easily setup the securecsar-frontend project to have GUI for securecsar REST webervices with the following steps:
 
