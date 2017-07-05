@@ -52,11 +52,11 @@ app.controller('EncryptCSARController', function ($scope, $filter, dialogs, grow
             fd.append('keystoreInfo.entry.keysize', $scope.model.keysize);
         }
 
-        Restangular.one('securecsar-service/encrypt')
+        Restangular.one('securecsar/encrypt')
             .withHttpConfig({transformRequest: angular.identity})
             .customPOST(fd, undefined, undefined,
                 {'Content-Type': undefined}).then(function (success) {
-            success.downloadLink = 'http://localhost:8080/securecsar-service/' + success.downloadLink;
+            success.downloadLink = 'http://localhost:8080/securecsar/' + success.downloadLink;
             $scope.msg = success;
             $('#myModal').modal('show');
         }, function (failure) {

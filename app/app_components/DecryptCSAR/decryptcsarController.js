@@ -25,11 +25,11 @@ app.controller('DecryptCSARController', function($scope, $filter, ngTableParams,
         fd.append('keystoreInfo.entry.aliasName', $scope.model.existingKeystoreAliasName);
         fd.append('keystoreInfo.entry.aliasPass', $scope.model.existingKeystoreAliasPassword);
 
-        Restangular.one('securecsar-service/decrypt')
+        Restangular.one('securecsar/decrypt')
             .withHttpConfig({transformRequest: angular.identity})
             .customPOST(fd, undefined, undefined,
                 {'Content-Type': undefined}).then(function (success) {
-            success.downloadLink = 'http://localhost:8080/securecsar-service/' + success.downloadLink;
+            success.downloadLink = 'http://localhost:8080/securecsar/' + success.downloadLink;
             $scope.msg = success;
             $('#myModal').modal('show');
         }, function (failure) {

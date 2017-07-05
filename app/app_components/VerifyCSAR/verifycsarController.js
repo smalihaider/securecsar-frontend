@@ -20,7 +20,7 @@ app.controller('VerifyCSARController', function ($scope, $filter, dialogs, growl
         fd.append('csarFile', $scope.model.csarfile[0]);
         fd.append('sigfile', $scope.model.sigfile);
 
-        Restangular.one('securecsar-service/verify')
+        Restangular.one('securecsar/verify')
             .withHttpConfig({transformRequest: angular.identity})
             .customPOST(fd, undefined, undefined,
                 {'Content-Type': undefined}).then(function (success) {

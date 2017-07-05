@@ -76,11 +76,11 @@ app.controller('SignCSARController', function ($scope, $filter, dialogs, growl, 
             }
         }
 
-        Restangular.one('securecsar-service/sign')
+        Restangular.one('securecsar/sign')
             .withHttpConfig({transformRequest: angular.identity})
             .customPOST(fd, undefined, undefined,
                 {'Content-Type': undefined}).then(function (success) {
-            success.downloadLink = 'http://localhost:8080/securecsar-service/' + success.downloadLink;
+            success.downloadLink = 'http://localhost:8080/securecsar/' + success.downloadLink;
             $scope.msg = success;
             $('#myModal').modal('show');
         }, function (failure) {
