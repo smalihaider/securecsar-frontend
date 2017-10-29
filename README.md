@@ -20,18 +20,24 @@ You can easily setup the securecsar-frontend project to have GUI for securecsar 
 1. Install GIT client (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 1. Setup Node.js on your machine (https://nodejs.org/en/)
 1. Go to the directory where the repository has been checkout, we call this directory securecscar-frontend.
-1. Execute "npm install" (this downloads all nodejs dependencies)
-1. Execute "npm install -g bower" (this installs bower globally and registers the bower installation in environment)
-1. Execute "bower install" (this downloads all dependencies managed by the bower)
-1. Copy folder securecscar-frontend/bower_components to securecscar-frontend/app
-1. Execute "grunt install
+1. Open command prompt (terminal) on this directory and execute the following commands:
+    1. Execute "npm install" (this downloads all nodejs dependencies)
+    1. Execute "npm install -g bower" (this installs bower globally and registers the bower installation in environment)
+    1. Execute "npm insall -g grunt" (this installs grunt globally)
+    1. Execute "bower install" (this downloads all dependencies managed by the bower)
+    1. Copy folder securecscar-frontend/bower_components to securecscar-frontend/app
+    1. Execute "grunt install"
+    1. Execute "npm install -g grunt-contrib-compass"
+1. Close the command prompt (terminal).
+1. Install ruby gem installer (https://rubyinstaller.org/downloads/) with all checkboxes at default and insatlling everything when asked upon.
+1. Open command prompt (terminal) and enter "gem install compass" (this will install saas and compass which are required to start grunt server)
 1. Set hostname of securecsar service (REST endpoint) in the following files (replace **localhost** with the new hostname). 
    1. securecscar-frontend/deploy.json
    1. securecscar-frontend/app/scrivpts/config.js
    1. securecscar-frontend/app/app_components/DecryptCSAR/decryptcsarController.js
    1. securecscar-frontend/app/app_components/EncryptCSAR/encryptcsarController.js
    1. securecscar-frontend/app/app_components/SignCSAR/signcsarController.js
-
-By default it is set at http://localhost:8080. So no need for this step, if securecsar-frontend and securecsar services are running on the same machine and server of securecsar services is configured at port 8080.
+   By default it is set at http://localhost:8080. So no need for this step, if securecsar-frontend and securecsar services are running on the same machine and server of securecsar services is configured at port 8080.
+1. Go to securecscar-frontend directory again, open command prompt and enter "grunt serve". This will start grunt server and open your default browser with securecsar-frontend application running on port 9000.
 
 More information of this prototype is included in scripture of the master's thesis "Securing Cloud Service Archives for Function and Data Shipping in Industrial Environments".
