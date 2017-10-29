@@ -19,10 +19,10 @@ You can easily setup the securecsar-frontend project to have GUI for securecsar 
 1. Checkout this repository.
 1. Install GIT client (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 1. Setup Node.js on your machine (https://nodejs.org/en/)
-1. Go to the directory where the repository has been checkout, we call this directory <securecscar-frontend>.
-1. Execute "npm install" (download all nodejs dependencies)
-1. Execute "npm install bower" (install bower)
-1. Execute "bower install" (download all bower components)
+1. Go to the directory where the repository has been checkout, we call this directory securecscar-frontend.
+1. Execute "npm install" (this downloads all nodejs dependencies)
+1. Execute "npm install bower" (this installs bower)
+1. Execute "bower install" (this downloads all dependencies managed by the bower)
 1. Copy folder <securecscar-frontend>/bower_components to <securecscar-frontend>/app
 1. Execute "grunt install
 1. Set hostname of securecsar service (REST endpoint) in the following files (replace **localhost** with the new hostname). 
